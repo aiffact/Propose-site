@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Alina ❤️</title>
 
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -18,11 +18,12 @@ box-sizing:border-box;
 body{
 font-family:'Poppins',sans-serif;
 height:100vh;
-background:radial-gradient(circle at top,#2b0033,#000);
-color:white;
+background:radial-gradient(circle at top,#ffe6f0,#ffb3d9,#ff99cc);
+color:#333;
 overflow:hidden;
 }
 
+/* Common Page */
 .page{
 position:absolute;
 top:0;
@@ -42,25 +43,11 @@ transition:all .6s ease;
 display:flex;
 }
 
-body::before{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:radial-gradient(circle at center,#ff5fd2,#3a003f,#000);
-opacity:0.15;
-animation:moveBg 40s linear infinite;
-}
-
-@keyframes moveBg{
-0%{background-position:0 0;}
-100%{background-position:1000px 1000px;}
-}
-
+/* Text */
 h1,h2{
 font-family:'Dancing Script',cursive;
 color:#ff4fd8;
-text-shadow:0 0 20px #ff4fd8;
+text-shadow:0 0 10px #ff4fd8;
 margin-bottom:15px;
 }
 
@@ -71,15 +58,16 @@ font-size:1.05rem;
 margin-bottom:25px;
 }
 
+/* Button Style */
 .btn{
-background:linear-gradient(135deg,#ff3fcf,#ff7bd5);
+background:linear-gradient(135deg,#ff99cc,#ffb3d9);
 border:none;
 padding:14px 40px;
 border-radius:50px;
 font-size:1.1rem;
 color:white;
 cursor:pointer;
-box-shadow:0 0 25px #ff4fd8;
+box-shadow:0 0 15px #ff4fd8;
 transition:.3s;
 font-family:'Dancing Script',cursive;
 margin:8px;
@@ -87,24 +75,13 @@ margin:8px;
 
 .btn:hover{
 transform:scale(1.1);
-box-shadow:0 0 40px #ff7bd5;
+box-shadow:0 0 30px #ff7bd5;
 }
 
-.teddy{
-width:130px;
-animation:float 3s ease-in-out infinite;
-margin-bottom:20px;
-}
-
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-15px);}
-100%{transform:translateY(0);}
-}
-
+/* Hearts Animation */
 .hearts span{
 position:absolute;
-color:pink;
+color:#ff66b2;
 font-size:22px;
 animation:floatHeart 5s linear infinite;
 }
@@ -114,6 +91,7 @@ animation:floatHeart 5s linear infinite;
 100%{bottom:100%;opacity:0;}
 }
 
+/* Heartbreak */
 #heartbreak{
 font-size:120px;
 animation:break 2s forwards;
@@ -124,104 +102,87 @@ animation:break 2s forwards;
 50%{color:red;}
 100%{transform:scale(0);opacity:0;}
 }
-
 </style>
 </head>
 
 <body>
 
+<!-- PAGE 1 -->
 <div id="page1" class="page active">
-
-<img src="https://i.imgur.com/2R4f4Qn.png" class="teddy">
-
 <h1>My Love ❤️</h1>
-
 <p>
 You’re my favorite person Alina, my best friend, and my love ❤️.<br>
 I can't imagine a future without you jaan 🫶🏻<br><br>
-
 I know I’m not perfect 😔<br>
 But you still handle me with so much love 🫂💖<br><br>
-
 Will you marry me Alina? 🥹🌸✨🤍<br><br>
-
 I love you so so much 💋🫶🏻🥺
 </p>
-
 <button class="btn" onclick="goPage(2)">Next ❤️</button>
-
 </div>
 
+<!-- PAGE 2 -->
 <div id="page2" class="page">
-
 <h2>Will you be mine? Alinaa 🥺🌹</h2>
-
 <button class="btn" onclick="answer('YES')">Yes 💖</button>
 <button class="btn" onclick="answer('NO')">No 💔</button>
-
 </div>
 
+<!-- PAGE 3 -->
 <div id="page3" class="page">
-
 <h2>I'm all yours Bbu 🫠🫂</h2>
-
-<p>
-Without any hesitation I can say you are my girl 💋🫶🏻
-</p>
-
+<p>Without any hesitation I can say you are my gurl 💋🫶🏻</p>
 <div class="hearts" id="hearts"></div>
-
 </div>
 
+<!-- HEARTBREAK -->
 <div id="page4" class="page">
-
 <div id="heartbreak">💔</div>
-
 </div>
 
+<!-- EmailJS v4 -->
+<script type="module">
+import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
 
-<script>
+emailjs.init("NDpTU-HbyG4vQXAha");
 
+/* Page Switch */
 function goPage(n){
-
 document.querySelectorAll('.page').forEach(p=>{
 p.classList.remove('active');
 });
-
 document.getElementById("page"+n).classList.add('active');
-
 }
 
+/* Answer with EmailJS v4 */
 function answer(res){
+emailjs.send("service_9c443zz","template_755j77m",{
+message:"User selected: "+res
+}).then(function(response){
+console.log('Email sent!', response.status, response.text);
+}, function(error){
+console.log('Email error...', error);
+});
 
 if(res==="YES"){
 goPage(3);
 createHearts();
-}
-else{
+}else{
 goPage(4);
 }
-
 }
 
+/* Hearts for YES */
 function createHearts(){
-
 let box=document.getElementById("hearts");
-
 for(let i=0;i<30;i++){
-
 let h=document.createElement("span");
 h.innerHTML="❤️";
-
 h.style.left=Math.random()*100+"%";
 h.style.animationDelay=Math.random()*3+"s";
-
 box.appendChild(h);
-
 }
-
 }
-
 </script>
 
 </body>
