@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Alina ❤️</title>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -17,57 +17,68 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-height:100vh;
-background:radial-gradient(circle at top,#ffe6f0,#ffb3d9,#ff99cc);
-color:#333;
-overflow:hidden;
+min-height:100vh;
+background:radial-gradient(circle at top,#2b0033,#000);
+color:white;
+overflow-y:auto;
 }
 
-/* Common Page */
+/* Pages */
+
 .page{
-position:absolute;
-top:0;
-left:0;
 width:100%;
-height:100%;
+min-height:100vh;
 display:none;
-justify-content:center;
-align-items:center;
 flex-direction:column;
+justify-content:flex-start;
+align-items:center;
 text-align:center;
-padding:20px;
-transition:all .6s ease;
+padding:30px 20px 50px;
 }
 
 .page.active{
 display:flex;
 }
 
+/* Background */
+
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:radial-gradient(circle at center,#ff5fd2,#3a003f,#000);
+opacity:0.15;
+z-index:-1;
+}
+
 /* Text */
+
 h1,h2{
 font-family:'Dancing Script',cursive;
 color:#ff4fd8;
-text-shadow:0 0 10px #ff4fd8;
+text-shadow:0 0 20px #ff4fd8;
 margin-bottom:15px;
 }
 
 p{
 max-width:650px;
 line-height:1.7;
-font-size:1.05rem;
+font-size:1.1rem;
 margin-bottom:25px;
 }
 
-/* Button Style */
+/* Button */
+
 .btn{
-background:linear-gradient(135deg,#ff99cc,#ffb3d9);
+background:linear-gradient(135deg,#ff3fcf,#ff7bd5);
 border:none;
 padding:14px 40px;
 border-radius:50px;
 font-size:1.1rem;
 color:white;
 cursor:pointer;
-box-shadow:0 0 15px #ff4fd8;
+box-shadow:0 0 25px #ff4fd8;
 transition:.3s;
 font-family:'Dancing Script',cursive;
 margin:8px;
@@ -75,13 +86,14 @@ margin:8px;
 
 .btn:hover{
 transform:scale(1.1);
-box-shadow:0 0 30px #ff7bd5;
+box-shadow:0 0 40px #ff7bd5;
 }
 
-/* Hearts Animation */
+/* Hearts */
+
 .hearts span{
 position:absolute;
-color:#ff66b2;
+color:pink;
 font-size:22px;
 animation:floatHeart 5s linear infinite;
 }
@@ -92,9 +104,10 @@ animation:floatHeart 5s linear infinite;
 }
 
 /* Heartbreak */
+
 #heartbreak{
 font-size:120px;
-animation:break 2s forwards;
+animation:break 4s forwards;
 }
 
 @keyframes break{
@@ -102,87 +115,132 @@ animation:break 2s forwards;
 50%{color:red;}
 100%{transform:scale(0);opacity:0;}
 }
+
 </style>
 </head>
 
 <body>
 
 <!-- PAGE 1 -->
+
 <div id="page1" class="page active">
+
 <h1>My Love ❤️</h1>
+
 <p>
-You’re my favorite person Alina, my best friend, and my love ❤️.<br>
-I can't imagine a future without you jaan 🫶🏻<br><br>
-I know I’m not perfect 😔<br>
-But you still handle me with so much love 🫂💖<br><br>
-Will you marry me Alina? 🥹🌸✨🤍<br><br>
+You’re my favorite person Aina, my best friend, and my love ❤️.
+I can't imagine a future where you aren't standing right next to me jaan 🫤.
+I just wanna be with you in present and also in future life with you 🫠🫶🏻.
+I want to give you my whole heart and everything I am.
+<br><br>
+
+I know I’m not always the easiest person to be around, and my moods can be a lot to carry 😔.
+But the way you handle me with so much grace, patience 😭, and zero judgment is the most beautiful thing I’ve ever experienced jaan 🫂.
+You don’t just love the best parts of me you stay for the messy parts too 🫠🫂.
+I want to be the man who earns that love every single day.
+Will you marry me Alina? 🥹🌸✨🤍
+<br><br>
+
+You don't just handle me bbe you hold me together 🫠🫂
+<br><br>
+
 I love you so so much 💋🫶🏻🥺
 </p>
+
 <button class="btn" onclick="goPage(2)">Next ❤️</button>
+
 </div>
 
 <!-- PAGE 2 -->
+
 <div id="page2" class="page">
+
 <h2>Will you be mine? Alinaa 🥺🌹</h2>
+
 <button class="btn" onclick="answer('YES')">Yes 💖</button>
 <button class="btn" onclick="answer('NO')">No 💔</button>
+
 </div>
 
 <!-- PAGE 3 -->
+
 <div id="page3" class="page">
+
 <h2>I'm all yours Bbu 🫠🫂</h2>
+
 <p>Without any hesitation I can say you are my gurl 💋🫶🏻</p>
+
 <div class="hearts" id="hearts"></div>
+
 </div>
 
-<!-- HEARTBREAK -->
+<!-- PAGE 4 -->
+
 <div id="page4" class="page">
+
 <div id="heartbreak">💔</div>
+
 </div>
+
 
 <!-- EmailJS v4 -->
-<script type="module">
-import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
 
 emailjs.init("NDpTU-HbyG4vQXAha");
 
-/* Page Switch */
+/* Page change */
+
 function goPage(n){
+
 document.querySelectorAll('.page').forEach(p=>{
 p.classList.remove('active');
 });
+
 document.getElementById("page"+n).classList.add('active');
+
 }
 
-/* Answer with EmailJS v4 */
+/* Answer */
+
 function answer(res){
+
 emailjs.send("service_9c443zz","template_755j77m",{
 message:"User selected: "+res
-}).then(function(response){
-console.log('Email sent!', response.status, response.text);
-}, function(error){
-console.log('Email error...', error);
 });
 
 if(res==="YES"){
 goPage(3);
 createHearts();
-}else{
+}
+else{
 goPage(4);
 }
+
 }
 
-/* Hearts for YES */
+/* Hearts */
+
 function createHearts(){
+
 let box=document.getElementById("hearts");
-for(let i=0;i<30;i++){
+
+for(let i=0;i<25;i++){
+
 let h=document.createElement("span");
 h.innerHTML="❤️";
+
 h.style.left=Math.random()*100+"%";
 h.style.animationDelay=Math.random()*3+"s";
+
 box.appendChild(h);
+
 }
+
 }
+
 </script>
 
 </body>
